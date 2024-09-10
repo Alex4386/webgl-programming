@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebGL: Triangle</title>
+</head>
+<body>
+  <canvas id="gl-canvas" width="512" height="512">
+    Oops... Your browser doesn't support HTML5 canvas element.
+  </canvas>
+
+  <p>201935044: 박상희</p>
+
+  <script type="x-shader/x-vertex" data-filename="triangle.vert">
+    attribute vec4 vPosition;
+    void main() {
+      gl_Position = vPosition;
+    }
+  </script>
+
+  <script type="x-shader/x-fragment" data-filename="triangle.frag">
+    precision mediump float;
+    void main() {
+      gl_FragColor = vec4(0.0, 0.0, 1.0, 1.0);
+    }
+  </script>
+
+  <script src="./shaderLoader.js"></script>
+  <script src="./triangle.js"></script>
+</body>
+</html>

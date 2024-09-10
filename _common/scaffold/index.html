@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebGL: Scaffold</title>
+</head>
+<body>
+  <canvas id="gl-canvas">
+    Oops... Your browser doesn't support HTML5 canvas element.
+  </canvas>
+
+  <script src="../_common/shaderLoader.js"></script>
+  <script>
+    let gl;
+
+    window.addEventListener('load', () => {
+      const canvas = document.getElementById('gl-canvas');
+      gl = canvas.getContext('webgl');
+      if (!gl) console.error('WebGL not supported.');
+
+      render(gl);
+    });
+
+    function render(gl) {
+      // enter your OpenGL render code
+    }
+  </script>
+</body>
+</html>
