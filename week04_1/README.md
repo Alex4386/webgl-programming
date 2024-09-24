@@ -55,3 +55,35 @@ void main() {
     gl_FragColor = fColor;
 }
 ```
+
+# Data Types of `GLSL`
+Unlike conventional `C`, `GLSL` has some few data-types for easier programming in GPU (e.g. Matrix and Vectors)
+
+## Vectors
+* Floating number vectors
+    * `vec2`, `vec3`, `vec4`
+* Integer vectors
+    * `ivec2`, `ivec3`, `ivec4`
+* Boolean vectors
+    * `bvec2`, `bvec3`, `bvec4`
+
+## Matrices
+* `mat2`, `mat3`, `mat4`
+* GLSL supports `dot` product out of the box
+* `C++` like constructors are available for matrices
+  ```glsl
+  mat4 m = mat4(1.0); // identity matrix
+  ```
+
+## No Pointers
+* `GLSL` does not support pointers
+* No dynamic memory allocation
+
+## `"Struct"` like referencing in `vec4`
+* Positioning
+    * `x,y,z,w`
+* Color
+    * `r,g,b,a`
+* Texture Coordinates
+    * `s,t,p,q`
+
