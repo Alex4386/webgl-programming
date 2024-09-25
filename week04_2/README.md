@@ -87,10 +87,3 @@ Unlike conventional `C`, `GLSL` has some few data-types for easier programming i
 * Texture Coordinates
     * `s,t,p,q`
 
-## Swapping of values inside `"struct"`
-```glsl
-vec4 a = vec4(1.0, 2.0, 3.0, 4.0);
-a.xy = a.yx; // swapping x and y
-```
-
-

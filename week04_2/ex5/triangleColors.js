@@ -1,6 +1,3 @@
-
-let gl;
-
 window.addEventListener('load', () => {
   const canvas = document.getElementById('gl-canvas');
   if (!canvas) throw new Error('Canvas not found.');
@@ -34,8 +31,8 @@ async function setup(
   
   // load shader
   const [vertexShader, fragmentShader] = await Promise.all([
-    shaderLoader(gl, 'square.vert'),
-    shaderLoader(gl, 'square.frag')
+    shaderLoader(gl, 'triangleColors.vert'),
+    shaderLoader(gl, 'triangleColors.frag')
   ]);
 
   // attach shader
@@ -47,33 +44,53 @@ async function setup(
   gl.useProgram(program);
 
   /* ==== DATA ==== */
+  const triangle = [
+  // x   y
+    [0, .5],
+    [-.5, -.5],
+    [.5, -.5]
+  ];
+
   const verticies = [
-    //  x,   y
-    [-0.5, 0.5], // upper left
-    [-0.5, -0.5], // lower left
-    [0.5, 0.5], // upper right
-    [0.5, -0.5], // lower right
+    ...triangle,
+  ];
+
+  const colors = [
+    [1, 0, 0, 1],
+    [0, 1, 0, 1],
+    [0, 0, 1, 1],
   ]
 
-  const bufId = gl.createBuffer(); // Setup buffer
-  gl.bindBuffer(gl.ARRAY_BUFFER, bufId);
+  // vertex position buffer
+  const vPosId = gl.createBuffer(); // Setup buffer
+  gl.bindBuffer(gl.ARRAY_BUFFER, vPosId);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verticies.flat()), gl.STATIC_DRAW);
 
   // Setup buffer as a vertex attribute - see triangle.vert file
   const vPosition = gl.getAttribLocation(program, 'vPosition'); // Get Pointer
-
-  // Set Vertex Attribute is a 2D vector (Float, Float)
-  gl.vertexAttribPointer(vPosition, 2, gl.FLOAT, false, 0, 0); 
+  gl.vertexAttribPointer(vPosition, 2, gl.FLOAT, false, 0, 0); // vPosition vec2
   gl.enableVertexAttribArray(vPosition);
 
-  render(gl);
+  // vertex color buffer
+  const vColorId = gl.createBuffer(); // Setup buffer
+  gl.bindBuffer(gl.ARRAY_BUFFER, vColorId);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors.flat()), gl.STATIC_DRAW);
+
+  const vColor = gl.getAttribLocation(program, 'vColor');
+  gl.vertexAttribPointer(vColor, 4, gl.FLOAT, false, 0, 0); // vColor vec4
+  gl.enableVertexAttribArray(vColor);
+
+  render(gl, program);
 }
 
 function render(
   /** @type {WebGLRenderingContext} */
   gl,
+
+  /** @type {WebGLProgram} */
+  program,
 ) {
   // clear everything and draw Arrays
   gl.clear(gl.COLOR_BUFFER_BIT);
-  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+  gl.drawArrays(gl.TRIANGLES, 0, 3);
 }
