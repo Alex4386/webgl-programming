@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebGL: 3D Gasket</title>
+</head>
+<body>
+  <!-- [WEBGL] EMBED FILES HERE -->
+
+  delay 0
+  <input id="slider" type="range" min="0" max="100" step="10" value="50" /> 100
+
+  <canvas id="gl-canvas" width="512" height="512">
+    Oops... Your browser doesn't support HTML5 canvas element.
+  </canvas>
+
+  <button id="direction">Change Rotation Direction</button>
+  <select id="controls" size="3">
+    <option value="0">Toggle Rotation Direction</option>
+    <option value="1">Spin Faster</option>
+    <option value="2">Spin Slower</option>
+  </select>
+
+  <p>201935044: 박상희</p>
+
+  <script src="./shaderLoader.js"></script>
+  <script src="./index.js"></script>
+</body>
