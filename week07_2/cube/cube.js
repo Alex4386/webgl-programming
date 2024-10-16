@@ -108,11 +108,12 @@ function render() {
   [verticies, _] = calculateVerticies();
   gl.drawArrays(gl.TRIANGLES, 0, verticies.length);
 
-  requestAnimationFrame(render);
+  // requestAnimationFrame(render); // prevent automatic re-render
 }
 
 function setAxis(a) {
   axis = a;
+  render();
 }
 
 function drawSide(pointA, pointB, pointC, pointD) {
