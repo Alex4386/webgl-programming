@@ -80,7 +80,15 @@ window.onload = function init()
     document.getElementById( "zButton" ).onclick = function () {
         axis = zAxis;
     };
-    document.getElementById("ButtonT").onclick = function(){flag = !flag;};
+    document.getElementById("ButtonT").onclick = function(){
+        flag = !flag;
+        const music = document.getElementById("music");
+        if (flag) {
+            music.play();
+        } else {
+            music.pause();
+        }
+    };
     render();
 }
 
