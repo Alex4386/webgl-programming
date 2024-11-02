@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Three.js Demo</title>
+  <style>
+    body { margin: 0; }
+    canvas { display: block; cursor: pointer; }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      color: rgba(255,255,255,.4);
+      text-align: left;
+    }
+
+    footer a {
+      color: rgba(127,127,255,.8);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <footer><a href="https://skfb.ly/6QUOx">
+    "Low-poly truck (car "Drifter")" (https://skfb.ly/6QUOx)</a> by Ivan Norman is licensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0</a>.<br>
+    201935044 박상희
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script>
+    // Set up the scene, camera, and renderer
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // Add orbit controls
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.update();
+
+    // Add ambient light
+    const ambientLight = new THREE.AmbientLight(0x404040); // soft white light
+    scene.add(ambientLight);
+
+    // Add directional light
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight.position.set(900, 20, 900);
+    scene.add(directionalLight);
+
+    // Add point light
+    const pointLight = new THREE.PointLight(0xffffff, 1, 100);
+    pointLight.position.set(750, 50, 50);
+    scene.add(pointLight);
+
+    // Load the GLTF model
+    const loader = new THREE.GLTFLoader();
+
+    // Location to save the loaded model
+    let model;
+    loader.load('./assets/scene.gltf', function (gltf) {
+      model = gltf.scene;
+      scene.add(model);
+    }, undefined, function (error) {
+      console.error(error);
+    });
+
+    camera.position.z = 700;
+
+    // Animation loop
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+
+      model.rotation.x += 0.01;
+      renderer.render(scene, camera);
+    }
+
+    window.addEventListener("resize", () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    })
+
+    animate();
+  </script>
+</body>
+</html>
