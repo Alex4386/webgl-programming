@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebGL: Sphere VertexShading</title>
+</head>
+<body>
+  <!-- [WEBGL] EMBED FILES HERE -->
+
+  <canvas id="gl-canvas" width="512" height="512">
+    Oops... Your browser doesn't support HTML5 canvas element.
+  </canvas>
+
+  <div>
+    <button id="radiusInc">Increase Radius</button>
+    <button id="radiusDec">Decrease Radius</button>
+    <button id="phiInc">Increase Phi</button>
+    <button id="phiDec">Decrease Phi</button>
+    <button id="subdivInc">Increase Subdivision</button>
+    <button id="subdivDec">Decrease Subdivision</button>
+  </div>
+
+  <div>
+    <p>201935044: 박상희</p>
+  </div>
+
+  <script src="./shaderLoader.js"></script>
+  <script src="./MV.js"></script>
+  <script src="./sphere.js"></script>
+
+  <script>
+    const radiusButtons = [
+      document.getElementById('radiusInc'),
+      document.getElementById('radiusDec'),
+    ];
+
+    const thetaButtons = [
+      document.getElementById('thetaInc'),
+      document.getElementById('thetaDec'),
+    ];
+
+    const phiButtons = [
+      document.getElementById('phiInc'),
+      document.getElementById('phiDec'),
+    ];
+
+    const subdivButtons = [
+      document.getElementById('subdivInc'),
+      document.getElementById('subdivDec'),
+    ]
+
+    radiusButtons.map(n => {
+      n.addEventListener(
+        "click",
+        _ => (n.id === 'radiusInc' ? radiusIncrease : radiusDecrease)()
+      )
+    });
+
+    thetaButtons.map(n => {
+      n.addEventListener(
+        "click",
+        _ => (n.id === 'thetaInc' ? thetaIncrease : thetaDecrease)()
+      )
+    });
+
+    phiButtons.map(n => {
+      n.addEventListener(
+        "click",
+        _ => (n.id === 'phiInc' ? phiIncrease : phiDecrease)()
+      )
+    });
+
+    subdivButtons.map(n => {
+      n.addEventListener(
+        "click",
+        _ => (n.id === 'subdivInc' ? subdivIncrease : subdivDecrease)()
+      )
+    });
+
+  </script>
+</body>
