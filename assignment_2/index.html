@@ -19,6 +19,7 @@
     <input type="range" id="speed" name="speed" min="0" max="10" step="0.01" value="0.5">
       fast
     </p>
+    <p><button id="reverser">Reverse time</button></p>
   </div>
 
   <script src="./shaderLoader.js"></script>
@@ -28,6 +29,10 @@
   <script>
     document.getElementById('speed').addEventListener('input', function(e) {
       setSpeed(e.target.value);
+    });
+
+    document.getElementById('reverser').addEventListener('click', function() {
+      multiplier *= -1;
     });
   </script>
 

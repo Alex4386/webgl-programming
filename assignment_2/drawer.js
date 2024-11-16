@@ -1,6 +1,7 @@
 
 let daylightCycle = 0; // 0 = 0:00, 1 = 24:00
 let daylightCycleSpeed = 0.001; // Speed of the daylight cycle
+let multiplier = 1;
 
 const SkyStatus = {
   NIGHT: 0,
@@ -14,8 +15,8 @@ function setSpeed(speed) {
 }
 
 function onFrame() {
-  daylightCycle += daylightCycleSpeed;
-  daylightCycle %= 1.0;
+  daylightCycle += daylightCycleSpeed * multiplier;
+  daylightCycle = (daylightCycle + 1.0) % 1.0;
 }
 
 function lerp(color1, color2, t) {
