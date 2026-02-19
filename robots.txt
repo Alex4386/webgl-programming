@@ -1,0 +1,6 @@
+# Don't DDoS my CloudFlare Pages, AI Scrapers.
+
+User-Agent: Meta-ExternalAgent
+User-Agent: OAI-SearchBot
+User-Agent: GPTBot
+Disallow: /
