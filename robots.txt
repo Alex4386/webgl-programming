@@ -1,6 +1,10 @@
 # Don't DDoS my CloudFlare Pages, AI Scrapers.
 
+# Hey, Meta. I love your Quest stuff, but Please Do NOT DDoS my site
 User-Agent: Meta-ExternalAgent
+Disallow: /
+
+# Imagine using scalped DRAMs and HBMs just to DDoS my site :skull:
 User-Agent: OAI-SearchBot
 User-Agent: GPTBot
 Disallow: /
